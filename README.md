@@ -1,3 +1,3 @@
 # Everyday Coding Test
 
--   Solving one question every day
+-   Solve one question every day
