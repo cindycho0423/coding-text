@@ -16,19 +16,24 @@ function solution(n, wires) {
     return cnt;
   }
 
-  let minDiff = Infinity;
+  let minDiff = Infinity; // 두 전력망 노드 개수 차이의 최솟값
   for (const [a, b] of wires) {
-    graph[a].splice(graph[a].indexOf(b), 1);
-    graph[b].splice(graph[b].indexOf(a), 1);
+    // 1) 전선 [a, b]를 끊음
+    graph[a].splice(graph[a].indexOf(b), 1); // a에서 b 제거
+    graph[b].splice(graph[b].indexOf(a), 1); // b에서 a 제거
 
-    const cntA = dfs(a, b);
-    const cntB = n - cntA;
+    // 2) 끊긴 상태에서 서브트리 크기 계산
+    const cntA = dfs(a, b); // 노드 a를 루트로 하는 서브트리 크기
+    const cntB = n - cntA; // 나머지 서브트리 크기 (전체에서 cntA를 뺌)
 
+    // 3) 두 서브트리 간의 노드 개수 차이 계산
     minDiff = Math.min(minDiff, Math.abs(cntA - cntB));
 
-    graph[a].push(b);
-    graph[b].push(a);
+    // 4) 전선 복구
+    graph[a].push(b); // a에서 b 다시 연결
+    graph[b].push(a); // b에서 a 다시 연결
   }
+
   return minDiff;
 }
 
