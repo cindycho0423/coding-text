@@ -7,9 +7,6 @@ function solution(k, dungeons) {
 
   // 깊이 우선 탐색(DFS) 함수
   function dfs(currentTiredness, count) {
-    // 현재까지 탐험한 던전 수와 기존 최대 던전 수 중 큰 값 선택
-    maxDungeons = Math.max(maxDungeons, count);
-
     for (let i = 0; i < dungeons.length; i++) {
       // 아직 방문하지 않은 던전이고, 현재 피로도가 입장 가능한 피로도보다 높은 경우
       if (!visited[i] && currentTiredness >= dungeons[i][0]) {
@@ -21,6 +18,9 @@ function solution(k, dungeons) {
         visited[i] = false;
       }
     }
+
+    // 현재까지 탐험한 던전 수와 기존 최대 던전 수 중 큰 값 선택
+    maxDungeons = Math.max(maxDungeons, count);
   }
 
   // 초기 DFS 호출 (초기 피로도, 초기 탐험 횟수 0)
