@@ -1,9 +1,3 @@
-// function solution(arr1, arr2) {
-//   let array = [...arr1, ...arr2];
-
-//   return array.sort((a, b) => a - b);
-// }
-
 function solution(arr1, arr2) {
   let i = 0,
     j = 0;
