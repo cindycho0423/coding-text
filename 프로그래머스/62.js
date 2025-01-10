@@ -18,7 +18,7 @@ function solution(arr, n) {
     return rotated;
   }
 
-  // 6. 원본 배열 arr을 복사
+  // 6. 원본 배열 arr을 복사함
   let rotated = arr.map(row => [...row]);
 
   // 7. 90도 회전 함수 호출
@@ -27,4 +27,36 @@ function solution(arr, n) {
   }
 
   return rotated;
+}
+
+function solution(arr, n) {
+  const len = arr.length;
+  // 회전 횟수를 4로 나눈 나머지를 사용 (4번 회전하면 360도 니까 원상태)
+  const rotateCount = n % 4;
+
+  // 회전이 필요없거나 4번 회전(원래 상태)인 경우
+  if (rotateCount === 0) return arr;
+
+  const result = Array.from({ length: len }, () => Array(len).fill(0));
+
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len; j++) {
+      switch (rotateCount) {
+        // 90도 회전
+        case 1:
+          result[j][len - 1 - i] = arr[i][j];
+          break;
+        // 180도 회전
+        case 2:
+          result[len - 1 - i][len - 1 - j] = arr[i][j];
+          break;
+        // 270도 회전
+        case 3:
+          result[len - 1 - j][i] = arr[i][j];
+          break;
+      }
+    }
+  }
+
+  return result;
 }
